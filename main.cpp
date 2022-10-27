@@ -4,6 +4,7 @@
 #include <allegro5/allegro_ttf.h>
 
 #include "snake.hpp"
+#include "main.hpp"
 
 #define SCR_W 640
 #define SCR_H 480
@@ -36,7 +37,7 @@ int main(void){
 
     int rodando = 1;
     double lastTempo, tempo = al_get_time();
-    Snake snake;
+    snk::Snake snake;
 
     while(rodando){
         lastTempo = tempo;
@@ -46,6 +47,7 @@ int main(void){
         while(!al_is_event_queue_empty(fila_eventos)){
             ALLEGRO_EVENT event;
             al_wait_for_event(fila_eventos, &event);
+            handleEvent(event);
 
             if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 rodando = 0;
@@ -65,4 +67,17 @@ int main(void){
     al_destroy_display(janela);
     al_destroy_event_queue(fila_eventos);
     return 0;
+}
+
+void handleEvent(ALLEGRO_EVENT event){
+    if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+        exit(EXIT_SUCCESS);
+    }
+    if(event.type == ALLEGRO_EVENT_KEY_DOWN){
+        switch(event.keyboard.keycode){
+            case ALLEGRO_KEY_ESCAPE:
+                exit(EXIT_SUCCESS);
+                break;
+        }
+    }
 }

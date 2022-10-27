@@ -1,25 +1,35 @@
+#include <allegro5/allegro.h>
+
 #include "options.hpp"
 
-VideoOptions::VideoOptions() : width(kDefaultWidth), height(kDefaultHeight) {}
 
-bool VideoOptions::isFullscreen() const { 
+// VIDEO OPTIONS
+
+snk::VideoOptions::VideoOptions(ALLEGRO_DISPLAY *display) : 
+    display(display),
+    width(kDefaultSize.x),
+    height(kDefaultSize.y),
+    fullscreen(false){}
+
+
+bool snk::VideoOptions::isFullscreen() const { 
     return fullscreen; 
 }
 
-void VideoOptions::setFullscreen(bool fullscreen){
+void snk::VideoOptions::setFullscreen(bool fullscreen){
     this->fullscreen = fullscreen; 
 }
 
-int VideoOptions::getWidth() const {
+int snk::VideoOptions::getWidth() const {
     return width; 
 }
-void VideoOptions::setWidth(int width) { 
+void snk::VideoOptions::setWidth(int width) { 
     this->width = width; 
 }
 
-int VideoOptions::getHeight() const { 
+int snk::VideoOptions::getHeight() const { 
     return height; 
 }
-void VideoOptions::setHeight(int height) { 
+void snk::VideoOptions::setHeight(int height) { 
     this->height = height; 
 }
