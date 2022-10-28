@@ -16,6 +16,7 @@ private:
 
     bool fullscreen;
 
+
     // allegro stuff
     ALLEGRO_DISPLAY *display;
 
@@ -30,6 +31,11 @@ public:
 
     int getHeight() const;
     void setHeight(int height);
+
+
+    float realBoardSize;
+    snk::Vec2F boardPos;
+    ALLEGRO_DISPLAY* getDisplay() const;
 };
 
 } // namespace snk

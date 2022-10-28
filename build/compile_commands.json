@@ -1,0 +1,57 @@
+[
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/main.cpp.o -c /home/rodrigo/Documentos/allegro-snake/main.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/main.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/game.cpp.o -c /home/rodrigo/Documentos/allegro-snake/game.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/game.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/options.cpp.o -c /home/rodrigo/Documentos/allegro-snake/options.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/options.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/snake.cpp.o -c /home/rodrigo/Documentos/allegro-snake/snake.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/snake.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/Vec2I.cpp.o -c /home/rodrigo/Documentos/allegro-snake/Vec2I.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/Vec2I.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/Vec2F.cpp.o -c /home/rodrigo/Documentos/allegro-snake/Vec2F.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/Vec2F.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++  -I/home/rodrigo/Documentos/allegro-snake -g -std=gnu++11 -o CMakeFiles/snake.dir/math.cpp.o -c /home/rodrigo/Documentos/allegro-snake/math.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/math.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++   -g -DGTEST_HAS_PTHREAD=1 -std=gnu++11 -o CMakeFiles/test.dir/tests/mathtest.cpp.o -c /home/rodrigo/Documentos/allegro-snake/tests/mathtest.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/tests/mathtest.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++   -g -DGTEST_HAS_PTHREAD=1 -std=gnu++11 -o CMakeFiles/test.dir/Vec2I.cpp.o -c /home/rodrigo/Documentos/allegro-snake/Vec2I.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/Vec2I.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++   -g -DGTEST_HAS_PTHREAD=1 -std=gnu++11 -o CMakeFiles/test.dir/Vec2F.cpp.o -c /home/rodrigo/Documentos/allegro-snake/Vec2F.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/Vec2F.cpp"
+},
+{
+  "directory": "/home/rodrigo/Documentos/allegro-snake/build",
+  "command": "/usr/bin/g++   -g -DGTEST_HAS_PTHREAD=1 -std=gnu++11 -o CMakeFiles/test.dir/math.cpp.o -c /home/rodrigo/Documentos/allegro-snake/math.cpp",
+  "file": "/home/rodrigo/Documentos/allegro-snake/math.cpp"
+}
+]

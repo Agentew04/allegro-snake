@@ -1,6 +1,22 @@
 #include <gtest/gtest.h>
 #include "../math.hpp"
 
+TEST(Angles, DegToRad){
+    EXPECT_FLOAT_EQ(snk::degToRad(0), 0);
+    EXPECT_FLOAT_EQ(snk::degToRad(90), M_PI_2);
+    EXPECT_FLOAT_EQ(snk::degToRad(180), M_PI);
+    EXPECT_FLOAT_EQ(snk::degToRad(270), M_PI + M_PI_2);
+    EXPECT_FLOAT_EQ(snk::degToRad(360), M_PI * 2);
+}
+
+TEST(Angles, RadToDeg){
+    EXPECT_FLOAT_EQ(snk::radToDeg(0), 0);
+    EXPECT_FLOAT_EQ(snk::radToDeg(1.5707963267948966), 90);
+    EXPECT_FLOAT_EQ(snk::radToDeg(3.141592653589793), 180);
+    EXPECT_FLOAT_EQ(snk::radToDeg(4.71238898038469), 270);
+    EXPECT_FLOAT_EQ(snk::radToDeg(6.283185307179586), 360);
+}
+
 TEST(Vec2I, VectorAdd) {
     snk::Vec2I a(1, 2);
     snk::Vec2I b(3, 4);
@@ -58,10 +74,10 @@ TEST(Vec2I, Distance) {
     snk::Vec2I c1(1,1);
     snk::Vec2I c2(-1,-1);
 
-    float c1c2Res = 2.83;
-    EXPECT_EQ(3, a1.distance(a2));
-    EXPECT_EQ(5, b1.distance(b2));
-    EXPECT_EQ(c1c2Res, std::round(c1.distance(c2)*100)/100);
+    float c1c2Res = std::sqrt(8); // 2*sqr(2)
+    EXPECT_FLOAT_EQ(3, a1.distance(a2));
+    EXPECT_FLOAT_EQ(5, b1.distance(b2));
+    EXPECT_FLOAT_EQ(c1c2Res, c1.distance(c2));
 }
 
 TEST(Vec2I, Magnitude) {
@@ -69,10 +85,10 @@ TEST(Vec2I, Magnitude) {
     snk::Vec2I b(-2, 0);
     snk::Vec2I c(-1, -1);
 
-    float cRes = 1.41;
-    EXPECT_EQ(5, a.magnitude());
-    EXPECT_EQ(2, b.magnitude());
-    EXPECT_EQ(cRes, std::round(c.magnitude()*100)/100);
+    float cRes = std::sqrt(2);
+    EXPECT_FLOAT_EQ(5, a.magnitude());
+    EXPECT_FLOAT_EQ(2, b.magnitude());
+    EXPECT_FLOAT_EQ(cRes, c.magnitude());
 }
 
 TEST(Vec2I, Normalize) {
