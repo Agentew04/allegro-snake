@@ -1,6 +1,8 @@
 #include <allegro5/allegro.h>
 
+#include <algorithm>
 #include "options.hpp"
+#include "game.hpp"
 
 
 // VIDEO OPTIONS
@@ -38,4 +40,24 @@ void snk::VideoOptions::setHeight(int height) {
 
 ALLEGRO_DISPLAY* snk::VideoOptions::getDisplay() const {
     return display;
+}
+
+snk::Vec2F snk::VideoOptions::calculateBoardPos() const {
+    float maxBoardSize = calculateBoardSize();
+    float sideWidth = (width - maxBoardSize - 2 * margin) / 2;
+    float upHeight = (height - maxBoardSize - 2 * margin) / 2;
+    float borderX1 = sideWidth + margin;
+    float borderY1 = upHeight + margin;
+    return Vec2F(borderX1, borderY1);
+}
+
+float snk::VideoOptions::calculateBoardSize() const {
+    float maxBoardSize = std::min(width - margin, height - margin);
+    return maxBoardSize;
+}
+
+float snk::VideoOptions::calculateCellSize(snk::Vec2I boardCells) const {
+    float maxBoardSize = calculateBoardSize();
+    float cellSize = maxBoardSize / std::max(boardCells.x, boardCells.y);
+    return cellSize;
 }

@@ -13,11 +13,9 @@ private:
     const snk::Vec2I kDefaultBoardSize = snk::Vec2I(20,20);
 
     int speed;
-    int boardWidth;
-    int boardHeight;
     Snake snake;
 
-    //food    
+    //food
     snk::Vec2I foodPos;
     std::random_device rd;
     std::mt19937 gen;
@@ -26,6 +24,8 @@ private:
 
     void drawFood(const snk::VideoOptions &video);
 public:
+    int boardWidth;
+    int boardHeight;
     Game();
 
     int getSpeed() const;

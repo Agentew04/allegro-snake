@@ -7,8 +7,7 @@
 
 snk::Game::Game() : speed(kDefaultSpeed),
     boardWidth(kDefaultBoardSize.x),
-    boardHeight(kDefaultBoardSize.y),
-    kDefaultBoardSize(snk::Vec2I(20,20)){
+    boardHeight(kDefaultBoardSize.y){
         snake = Snake();
         generateFood();
         gen = std::mt19937(rd());
@@ -57,30 +56,24 @@ void snk::Game::draw(const snk::VideoOptions &video){
     ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
     ALLEGRO_COLOR lightGray = al_map_rgb(200, 200, 200);
 
-    int margin = 15;
-    float maxBoardSize = std::min(video.getWidth() - margin, video.getHeight() - margin);
-    //video.realBoardSize = maxBoardSize;
-    float cellSize = maxBoardSize / std::max(boardWidth, boardHeight);
-    float sideWidth = (video.getWidth() - maxBoardSize - 2 * margin) / 2;
-    float upHeight = (video.getHeight() - maxBoardSize - 2 * margin) / 2;
-    float borderX1 = sideWidth + margin;
-    float borderY1 = upHeight + margin;
-    float borderX2 = borderX1 + maxBoardSize;
-    float borderY2 = borderY1 + maxBoardSize;
+    Vec2F p1 = video.calculateBoardPos();
+    float borderSize = video.calculateBoardSize();
+    float cellSize = video.calculateCellSize(Vec2I(boardWidth, boardHeight));
+    Vec2F p2 = p1 + Vec2F(borderSize, borderSize);
 
     // draw cells
     for(int i = 0; i < boardWidth; i++){
         for(int j = 0; j < boardHeight; j++){
-            al_draw_rectangle(borderX1+i*cellSize+1,
-                            borderY1+j*cellSize+1,
-                            borderX1+(i+1)*cellSize+1,
-                            borderY1+(j+1)*cellSize+1,
+            al_draw_rectangle(p1.x+i*cellSize+1,
+                            p1.y+j*cellSize+1,
+                            p1.x+(i+1)*cellSize+1,
+                            p1.y+(j+1)*cellSize+1,
                             lightGray, 1);
         }
     }
 
     // draw border
-    al_draw_rectangle(borderX1, borderY1, borderX2, borderY2, white, 3);
+    al_draw_rectangle(p1.x, p1.y, p2.x, p2.y, white, 3);
 
 
     drawFood(video);
