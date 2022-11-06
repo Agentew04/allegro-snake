@@ -28,6 +28,8 @@ private:
     std::uniform_int_distribution<int> distributionY;
 
     void drawFood(const snk::VideoOptions &video) const;
+
+    void drawLeftMenu(const snk::VideoOptions &video) const;
 public:
     Game(int boardWidth, int boardHeight);
 

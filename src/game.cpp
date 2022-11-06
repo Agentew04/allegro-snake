@@ -2,6 +2,8 @@
 
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_font.h>
 
 #include "game.hpp"
 #include "math.hpp"
@@ -79,6 +81,27 @@ void snk::Game::setDirection(snk::Vec2I direction){
     }
 }
 
+void snk::Game::drawLeftMenu(const snk::VideoOptions &video) const{
+    ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
+    ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
+
+    Vec2F origin = video.calculateBoardPos();
+    Vec2F menuWidth = video.calculateBarSize();
+
+    ALLEGRO_BITMAP *buffer = al_create_bitmap(menuWidth.x, menuWidth.y);
+    al_set_target_bitmap(buffer);
+    al_clear_to_color(black);
+    al_draw_textf(video.getFont(), white,
+        0, 0,
+        ALLEGRO_ALIGN_LEFT, "Score: %lu", snake.body.size() - 1);
+    al_draw_textf(video.getFont(), white,
+        0, al_get_font_line_height(video.getFont()),
+        ALLEGRO_ALIGN_LEFT, "Speed: %d", speed);
+    al_set_target_backbuffer(video.getDisplay());
+    al_draw_bitmap(buffer, origin.x - menuWidth.x, origin.y, 0);
+    al_destroy_bitmap(buffer);
+}
+
 void snk::Game::draw(const snk::VideoOptions &video) const {
     ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
     ALLEGRO_COLOR lightGray = al_map_rgb(200, 200, 200);
@@ -105,7 +128,7 @@ void snk::Game::draw(const snk::VideoOptions &video) const {
 
 
     drawFood(video);
+    drawLeftMenu(video);
+
     snake.draw(video, cellSize);
-
-
 }

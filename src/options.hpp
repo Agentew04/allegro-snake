@@ -2,6 +2,7 @@
 #define OPTIONS_HPP
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 
 #include "math.hpp"
 
@@ -21,9 +22,9 @@ private:
 
     // allegro stuff
     ALLEGRO_DISPLAY *display;
-
+    ALLEGRO_FONT *font;
 public:
-    VideoOptions(ALLEGRO_DISPLAY *display);
+    VideoOptions(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font);
 
     bool isFullscreen() const;
     void setFullscreen(bool fullscreen);
@@ -37,8 +38,10 @@ public:
     Vec2F calculateBoardPos() const;
     float calculateBoardSize() const;
     float calculateCellSize(Vec2I boardCells) const;
+    Vec2F calculateBarSize() const;
 
     ALLEGRO_DISPLAY* getDisplay() const;
+    ALLEGRO_FONT* getFont() const;
 };
 
 } // namespace snk

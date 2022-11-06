@@ -1,4 +1,5 @@
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 
 #include <algorithm>
 #include "options.hpp"
@@ -7,8 +8,9 @@
 
 // VIDEO OPTIONS
 
-snk::VideoOptions::VideoOptions(ALLEGRO_DISPLAY *display){
+snk::VideoOptions::VideoOptions(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font){
     this->display = display;
+    this->font = font;
     this->height = al_get_display_height(display);
     this->width = al_get_display_width(display);
     this->fullscreen = false;
@@ -42,6 +44,10 @@ ALLEGRO_DISPLAY* snk::VideoOptions::getDisplay() const {
     return display;
 }
 
+ALLEGRO_FONT* snk::VideoOptions::getFont() const {
+    return font;
+}
+
 snk::Vec2F snk::VideoOptions::calculateBoardPos() const {
     float maxBoardSize = calculateBoardSize();
     float sideWidth = (width - maxBoardSize - 2 * margin) / 2;
@@ -60,4 +66,10 @@ float snk::VideoOptions::calculateCellSize(snk::Vec2I boardCells) const {
     float maxBoardSize = calculateBoardSize();
     float cellSize = maxBoardSize / std::max(boardCells.x, boardCells.y);
     return cellSize;
+}
+
+snk::Vec2F snk::VideoOptions::calculateBarSize() const {
+    float maxBoardSize = calculateBoardSize();
+    float barWidth = ((width - maxBoardSize) - 2 * margin) / 2;
+    return Vec2F(barWidth, height);
 }

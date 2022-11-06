@@ -43,7 +43,8 @@ int main(void){
 
     bool rodando = true;
     double lastTempo, tempo = al_get_time();
-    snk::VideoOptions video (janela);
+    snk::VideoOptions video (janela, font);
+    State state = State::Game;
     snk::Game game(20, 20);
 
     while(rodando){
@@ -55,19 +56,28 @@ int main(void){
         while(!al_is_event_queue_empty(fila_eventos)){
             ALLEGRO_EVENT event;
             al_wait_for_event(fila_eventos, &event);
-            handleEvent(event, game, video, rodando);
+            handleEvent(event, game, video, rodando, state);
             if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 rodando = 0;
             }
         }
 
         // update
-        game.update(delta);
+        if(state == State::Game)
+            game.update(delta);
 
-        // draw to screen
+        // draw
         al_clear_to_color(al_map_rgb(0, 0, 0));
-        game.draw(video);
+        if(state == State::Game)
+            game.draw(video);
+        else if(state == State::Menu){
+            al_draw_text(font, al_map_rgb(255, 255, 255), SCR_W/2, SCR_H/2, ALLEGRO_ALIGN_CENTRE, "Pressione qualquer tecla para iniciar");
+        }
+        else if(state == State::GameOver){
+            al_draw_text(font, al_map_rgb(255, 255, 255), SCR_W/2, SCR_H/2, ALLEGRO_ALIGN_CENTRE, "Game Over");
+        }
 
+        // render frame
         al_flip_display();
     }
 
@@ -78,7 +88,8 @@ int main(void){
     return 0;
 }
 
-void handleEvent(ALLEGRO_EVENT event, snk::Game &game, snk::VideoOptions &video, bool &rodando){
+void handleEvent(ALLEGRO_EVENT event, snk::Game &game, snk::VideoOptions &video, bool &rodando, State &state){
+    // state independent events
     if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
         rodando = 0;
     }
@@ -88,7 +99,8 @@ void handleEvent(ALLEGRO_EVENT event, snk::Game &game, snk::VideoOptions &video,
         video.setHeight(event.display.height);
     }
 
-    if(event.type == ALLEGRO_EVENT_KEY_DOWN){
+    // state dependent events
+    if(event.type == ALLEGRO_EVENT_KEY_DOWN && state == State::Game){
         switch(event.keyboard.keycode){
             case ALLEGRO_KEY_F11:
                 video.setFullscreen(!video.isFullscreen());
