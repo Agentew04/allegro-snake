@@ -9,10 +9,15 @@ namespace snk{
 
 struct Game{
 private:
-    static const int kDefaultSpeed = 10;
-    const snk::Vec2I kDefaultBoardSize = snk::Vec2I(20,20);
+    const int kDefaultSpeed = 10;
 
     int speed;
+    float inverseSpeed;
+    double moveCounter;
+    bool gameOver = false;
+    int boardWidth;
+    int boardHeight;
+
     Snake snake;
 
     //food
@@ -22,20 +27,22 @@ private:
     std::uniform_int_distribution<int> distributionX;
     std::uniform_int_distribution<int> distributionY;
 
-    void drawFood(const snk::VideoOptions &video);
+    void drawFood(const snk::VideoOptions &video) const;
 public:
-    int boardWidth;
-    int boardHeight;
-    Game();
+    Game(int boardWidth, int boardHeight);
 
     int getSpeed() const;
     void setSpeed(int speed);
 
+    snk::Vec2I getBoardSize() const;
+
     void generateFood();
 
-    void update(float delta);
+    void setDirection(snk::Vec2I direction);
 
-    void draw(const snk::VideoOptions &video);
+    void update(double delta);
+
+    void draw(const snk::VideoOptions &video) const;
 };
 
 } // namespace snk

@@ -9,19 +9,21 @@ namespace snk{
 
 struct Snake{
 public:
-    Vec2I head;
+    Vec2I startPos {10,10};
     Vec2I direction;
+    Vec2I boardSize;
     std::vector<Vec2I> body;
 
-    Snake();
+    Snake() = default;
+    Snake(Vec2I boardSize);
 
-    void move(int x, int y);
+    void move(Vec2I direction, bool grow);
 
-    void grow(int x, int y);
+    bool selfCollision();
 
-    void draw(const VideoOptions &video);
+    void draw(const VideoOptions &video, float cellSize) const;
 
-    bool contains(Vec2I point);
+    bool isSnake(Vec2I point);
 };
 
 } // namespace snk

@@ -47,3 +47,19 @@ float snk::Vec2I::angle(const Vec2I &other) const{
     if (res != res) return 0;
     return res;
 }
+
+snk::Vec2I snk::Vec2I::zero(){
+    return Vec2I(0,0);
+}
+snk::Vec2I snk::Vec2I::left(){
+    return Vec2I(-1,0);
+}
+snk::Vec2I snk::Vec2I::right(){
+    return Vec2I(1,0);
+}
+snk::Vec2I snk::Vec2I::up(){
+    return Vec2I(0,-1);
+}
+snk::Vec2I snk::Vec2I::down(){
+    return Vec2I(0,1);
+}

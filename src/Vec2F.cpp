@@ -46,3 +46,19 @@ float snk::Vec2F::angle(const Vec2F &other) const{
     float magProduct = magnitude() * other.magnitude();
     return std::acos(dotProduct / magProduct);
 }
+
+snk::Vec2F snk::Vec2F::zero(){
+    return Vec2F(0,0);
+}
+snk::Vec2F snk::Vec2F::left(){
+    return Vec2F(-1,0);
+}
+snk::Vec2F snk::Vec2F::right(){
+    return Vec2F(1,0);
+}
+snk::Vec2F snk::Vec2F::up(){
+    return Vec2F(0,-1);
+}
+snk::Vec2F snk::Vec2F::down(){
+    return Vec2F(0,1);
+}

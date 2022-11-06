@@ -13,6 +13,13 @@ public:
     Vec2I(int x, int y): x(x), y(y) {};
     Vec2I() = default;
 
+    static Vec2I zero();
+    static Vec2I left();
+    static Vec2I right();
+    static Vec2I up();
+    static Vec2I down();
+
+
     // vector x vector
     Vec2I operator+(const Vec2I &other) const;
     Vec2I operator-(const Vec2I &other) const;
@@ -30,7 +37,7 @@ public:
     Vec2I normalize() const;
     int dot(const Vec2I &other) const;
     float angle(const Vec2I &other) const;
-    
+
     //Vec2I cross(const Vec2I &other) const;
 
 };
@@ -42,6 +49,12 @@ public:
 
     Vec2F(float x, float y): x(x), y(y) {};
     Vec2F() = default;
+
+    static Vec2F zero();
+    static Vec2F left();
+    static Vec2F right();
+    static Vec2F up();
+    static Vec2F down();
 
     // vector x vector
     Vec2F operator+(const Vec2F &other) const;

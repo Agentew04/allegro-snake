@@ -13,7 +13,7 @@
 
 void init(ALLEGRO_EVENT_QUEUE **fila_eventos, ALLEGRO_DISPLAY **janela){
     srand(time(NULL));
-    al_init(); 
+    al_init();
     al_init_font_addon();
     al_init_ttf_addon();
     al_init_primitives_addon();
@@ -44,7 +44,7 @@ int main(void){
     bool rodando = true;
     double lastTempo, tempo = al_get_time();
     snk::VideoOptions video (janela);
-    snk::Game game;
+    snk::Game game(20, 20);
 
     while(rodando){
         lastTempo = tempo;
@@ -95,6 +95,22 @@ void handleEvent(ALLEGRO_EVENT event, snk::Game &game, snk::VideoOptions &video,
                 break;
             case ALLEGRO_KEY_ESCAPE:
                 rodando = false;
+                break;
+            case ALLEGRO_KEY_A:
+            case ALLEGRO_KEY_LEFT:
+                game.setDirection(snk::Vec2I::left());
+                break;
+            case ALLEGRO_KEY_D:
+            case ALLEGRO_KEY_RIGHT:
+                game.setDirection(snk::Vec2I::right());
+                break;
+            case ALLEGRO_KEY_W:
+            case ALLEGRO_KEY_UP:
+                game.setDirection(snk::Vec2I::up());
+                break;
+            case ALLEGRO_KEY_S:
+            case ALLEGRO_KEY_DOWN:
+                game.setDirection(snk::Vec2I::down());
                 break;
         }
     }
