@@ -2,6 +2,8 @@
 #define SNAKE_HPP
 
 #include <vector>
+#include <iostream>
+
 #include "options.hpp"
 #include "math.hpp"
 
@@ -24,6 +26,10 @@ public:
     void draw(const VideoOptions &video, float cellSize) const;
 
     bool isSnake(Vec2I point);
+
+    void serialize(std::ostream &os) const;
+
+    static Snake deserialize(std::istream &is);
 };
 
 } // namespace snk

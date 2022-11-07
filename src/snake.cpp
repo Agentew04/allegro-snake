@@ -1,6 +1,7 @@
-#include "snake.hpp"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+
+#include "snake.hpp"
 
 snk::Snake::Snake(snk::Vec2I boardSize) {
     body.push_back(startPos);
@@ -51,4 +52,25 @@ void snk::Snake::draw(const snk::VideoOptions &options, float cellSize) const{
             origin.y + ((i.y + 1) * cellSize)+1,
             green);
     }
+}
+
+void snk::Snake::serialize(std::ostream &os) const {
+    os << body.size();
+    for(auto &i : body){
+        os << i.x << i.y;
+    }
+    os << direction.x << direction.y;
+}
+
+snk::Snake snk::Snake::deserialize(std::istream &is) {
+    int size;
+    is >> size;
+    snk::Snake snake;
+    for(int i = 0; i < size; i++){
+        int x, y;
+        is >> x >> y;
+        snake.body.push_back({x, y});
+    }
+    is >> snake.direction.x >> snake.direction.y;
+    return snake;
 }

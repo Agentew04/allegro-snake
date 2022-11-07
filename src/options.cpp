@@ -1,19 +1,31 @@
+#include <algorithm>
+#include <iostream>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 
-#include <algorithm>
 #include "options.hpp"
 #include "game.hpp"
 
 
 // VIDEO OPTIONS
 
-snk::VideoOptions::VideoOptions(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font){
+snk::VideoOptions::VideoOptions(ALLEGRO_DISPLAY *display){
     this->display = display;
-    this->font = font;
     this->height = al_get_display_height(display);
     this->width = al_get_display_width(display);
     this->fullscreen = false;
+
+    this->fontRegular = al_load_font("./assets/fonts/Rajdhani-Regular.ttf", 25, 0);
+    std::cout << "regular: " << fontRegular << std::endl;
+    this->fontLarge = al_load_font("./assets/fonts/Rajdhani-Regular.ttf", 30, 0);
+    this->fontTitle = al_load_font("./assets/fonts/Rajdhani-Regular.ttf", 35, 0);
+}
+
+snk::VideoOptions::~VideoOptions(){
+    al_destroy_font(fontRegular);
+    al_destroy_font(fontLarge);
+    al_destroy_font(fontTitle);
 }
 
 
@@ -44,8 +56,18 @@ ALLEGRO_DISPLAY* snk::VideoOptions::getDisplay() const {
     return display;
 }
 
-ALLEGRO_FONT* snk::VideoOptions::getFont() const {
-    return font;
+ALLEGRO_FONT* snk::VideoOptions::getFont(snk::FontSize font) const {
+    switch (font)
+    {
+    case FontSize::Regular:
+        return fontRegular;
+    case FontSize::Large:
+        return fontLarge;
+    case FontSize::Title:
+        return fontTitle;
+    default:
+        return fontRegular;
+    }
 }
 
 snk::Vec2F snk::VideoOptions::calculateBoardPos() const {

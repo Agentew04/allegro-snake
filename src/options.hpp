@@ -8,6 +8,12 @@
 
 namespace snk{
 
+enum class FontSize{
+    Regular,
+    Large,
+    Title
+};
+
 struct VideoOptions{
 private:
     Vec2I kDefaultSize = Vec2I(1280, 720);
@@ -22,9 +28,12 @@ private:
 
     // allegro stuff
     ALLEGRO_DISPLAY *display;
-    ALLEGRO_FONT *font;
+    ALLEGRO_FONT *fontRegular;
+    ALLEGRO_FONT *fontLarge;
+    ALLEGRO_FONT *fontTitle;
 public:
-    VideoOptions(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font);
+    VideoOptions(ALLEGRO_DISPLAY *display);
+    ~VideoOptions();
 
     bool isFullscreen() const;
     void setFullscreen(bool fullscreen);
@@ -41,7 +50,7 @@ public:
     Vec2F calculateBarSize() const;
 
     ALLEGRO_DISPLAY* getDisplay() const;
-    ALLEGRO_FONT* getFont() const;
+    ALLEGRO_FONT* getFont(FontSize font) const;
 };
 
 } // namespace snk

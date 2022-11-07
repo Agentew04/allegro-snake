@@ -5,5 +5,8 @@ Makefile
 build/
 CMakeFiles
 
+.vscode/
+
 *.o
 bin/
+

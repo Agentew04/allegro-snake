@@ -36,14 +36,12 @@ void init(ALLEGRO_EVENT_QUEUE **fila_eventos, ALLEGRO_DISPLAY **janela){
 
 int main(void){
     ALLEGRO_DISPLAY *janela = nullptr;
-    ALLEGRO_FONT* font = nullptr;
     ALLEGRO_EVENT_QUEUE *fila_eventos = nullptr;
     init(&fila_eventos, &janela);
-    font = al_create_builtin_font();
 
     bool rodando = true;
     double lastTempo, tempo = al_get_time();
-    snk::VideoOptions video (janela, font);
+    snk::VideoOptions video (janela);
     State state = State::Game;
     snk::Game game(20, 20);
 
@@ -71,10 +69,10 @@ int main(void){
         if(state == State::Game)
             game.draw(video);
         else if(state == State::Menu){
-            al_draw_text(font, al_map_rgb(255, 255, 255), SCR_W/2, SCR_H/2, ALLEGRO_ALIGN_CENTRE, "Pressione qualquer tecla para iniciar");
+            al_draw_text(video.getFont(snk::FontSize::Large), al_map_rgb(255, 255, 255), SCR_W/2, SCR_H/2, ALLEGRO_ALIGN_CENTRE, "Pressione qualquer tecla para iniciar");
         }
         else if(state == State::GameOver){
-            al_draw_text(font, al_map_rgb(255, 255, 255), SCR_W/2, SCR_H/2, ALLEGRO_ALIGN_CENTRE, "Game Over");
+            al_draw_text(video.getFont(snk::FontSize::Large), al_map_rgb(255, 255, 255), SCR_W/2, SCR_H/2, ALLEGRO_ALIGN_CENTRE, "Game Over");
         }
 
         // render frame
@@ -82,7 +80,6 @@ int main(void){
     }
 
     // destroy stuff
-    al_destroy_font(font);
     al_destroy_display(janela);
     al_destroy_event_queue(fila_eventos);
     return 0;
